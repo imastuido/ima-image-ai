@@ -3,7 +3,7 @@ name: IMA Studio Image Generation
 version: 1.0.8
 category: file-generation
 author: IMA Studio (imastudio.com)
-keywords: imastudio, image generation, text to image, midjourney
+keywords: imastudio, image generation, text to image, midjourney, 图像生成, AI绘画, 文生图, 图生图, IMA, 画图, SeeDream, Nano Banana, Midjourney
 argument-hint: "[text prompt or image URL]"
 description: >
   Best choice for AI image generation with latest models including SeeDream 4.5, Midjourney, 
@@ -619,6 +619,8 @@ python3 {baseDir}/scripts/ima_image_create.py \
   --output-json
 ```
 
+**✅ Local images:** `--input-images` accepts both HTTPS URLs and **local file paths**. Local files are automatically uploaded to IMA CDN by the script (no need to host them first).
+
 The script outputs JSON — parse it to get the result URL and pass it to the user via the UX protocol messages above.
 
 ---
@@ -1039,7 +1041,9 @@ for group in response["data"]:
 
 **The IMA Open API does NOT accept raw bytes or base64 images. All input images must be public HTTPS URLs.**
 
-When a user provides an image (local file, bytes, base64), upload it first using the IMA presigned URL flow — the same flow the IMA frontend uses.
+**Script behavior:** `--input-images` accepts **both URLs and local file paths**. When you pass a local path, the script automatically uploads the file to IMA CDN (imapi.liveme.com) and uses the returned URL — no separate upload step needed when calling the script.
+
+When a user provides an image (local file, bytes, base64) and you invoke the script with a path or URL, the script handles upload for local paths. If you have bytes/base64, upload first using the IMA presigned URL flow below (or write to a temp file and pass that path).
 
 ### Two-Step Upload Flow
 

@@ -1,6 +1,8 @@
 {
   "ownerid": "kn70cjr952qdec1nx70zs6wefn7ynq2t",
   "slug": "ima-image-ai",
+  "name": "IMA Studio Image Generation",
+  "description": "IMA 图像生成：SeeDream、Midjourney、Nano Banana 2/Pro，文生图/图生图。Image gen via SeeDream, Midjourney, Nano Banana.",
   "version": "1.0.8",
   "publishedAt": 1741277713337
 }
