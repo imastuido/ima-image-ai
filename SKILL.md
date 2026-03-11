@@ -18,6 +18,41 @@ description: >
 
 # IMA Image AI Creation
 
+## ⚠️ 重要：模型 ID 参考
+
+**CRITICAL:** When calling the script, you MUST use the exact **model_id** (second column), NOT the friendly model name. Do NOT infer model_id from the friendly name.
+
+**Quick Reference Table:**
+
+| 友好名称 (Friendly Name) | model_id | 说明 (Notes) |
+|-------------------------|----------|-------------|
+| Nano Banana2 | `gemini-3.1-flash-image` | ❌ NOT nano-banana-2, 预算选择 4-13 pts |
+| Nano Banana Pro | `gemini-3-pro-image` | ❌ NOT nano-banana-pro, 高质量 10-18 pts |
+| SeeDream 4.5 | `doubao-seedream-4.5` | ✅ Recommended default, 5 pts |
+| Midjourney | `midjourney` | ✅ Same as friendly name, 8-10 pts |
+
+**User Input Variations Handled by Agent:**
+- "香蕉" / "香蕉2" / "小香蕉" → Nano Banana2 → `gemini-3.1-flash-image`
+- "香蕉Pro" / "香蕉专业版" / "大香蕉" → Nano Banana Pro → `gemini-3-pro-image`
+- "可梦" / "豆包可梦" / "SeeDream" → `doubao-seedream-4.5`
+- "MJ" / "Midjourney" → `midjourney`
+
+**How to get the correct model_id:**
+1. Check this table first
+2. Use `--list-models --task-type text_to_image` (or `image_to_image`)
+3. Refer to command examples below
+
+**Example:**
+```bash
+# ❌ WRONG: Inferring from friendly name
+--model-id nano-banana-pro
+
+# ✅ CORRECT: Using exact model_id from table
+--model-id gemini-3-pro-image
+```
+
+---
+
 ## ⚠️ MANDATORY PRE-CHECK: Read Knowledge Base First!
 
 **If ima-knowledge-ai is not installed:** Skip all "Read …" steps below; use only this SKILL's default models and the **📥 User Input Parsing** tables for task_type, model_id, and parameters.
